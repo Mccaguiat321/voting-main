@@ -1,0 +1,118 @@
+h1 {
+  font-size: 30px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 15px;
+}
+table {
+  width: 90%;
+  table-layout: fixed;
+}
+.tbl-header {
+  background-color: black;
+  color: white;
+}
+.tbl-content {
+  height: 500px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid black;
+}
+th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: "Kdam Thmor Pro", sans-serif;
+}
+tbody {
+  background: rgb(238, 238, 238);
+}
+td {
+  font-family: "Kdam Thmor Pro", sans-serif;
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 900;
+  font-size: 14px;
+  color: black;
+  border-bottom: 1px solid black;
+  width: 432px;
+}
+
+/* demo styles */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(pexels-pixabay-207529.jpg);
+  width: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-family: "Roboto", sans-serif;
+}
+section {
+  margin-left: 140px;
+  width: 1300px;
+  margin-top: 50px;
+  height: 100vh;
+}
+
+/* follow me template */
+.made-with-love {
+  margin-top: 40px;
+  padding: 10px;
+  clear: left;
+  text-align: center;
+  font-size: 10px;
+  font-family: arial;
+  color: black;
+}
+.made-with-love i {
+  font-style: normal;
+  color: black;
+  font-size: 14px;
+  position: relative;
+  top: 2px;
+}
+.made-with-love a {
+  color: black;
+  text-decoration: none;
+}
+.made-with-love a:hover {
+  text-decoration: underline;
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: grey;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.idid {
+  width: 900px;
+}
+.ewqe {
+  transform: translateX(-280px);
+}
+.opopop {
+  transform: translateX(-150px);
+}
+.ididididid {
+  letter-spacing: 10px;
+  margin-bottom: 20px;
+  font-family: "Kdam Thmor Pro", sans-serif;
+}
