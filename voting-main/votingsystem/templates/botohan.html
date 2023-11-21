@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANG GALING</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stile.css') }}"
+    />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="pps">
+      <div class="logo"><img src="../static/logo1.png" alt="" /></div>
+      <div class="row1s">
+        <h1 data-text="VOTING SYSTEM">VOTING SYSTEM</h1>
+        <p class="asd">
+          Lorem ipsum dolor sit amet consectetur consequuntur <br />debitis
+          dolores ea vitae, oms facere delectus <br />atporro? facere delectus
+          facere delectus
+        </p>
+        <a href="#scrooling"
+          ><button class="custom-btn btn-7 qwe">Vote Now</button></a
+        >
+        <div class="load-wrapp">
+          <div class="load-3">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row1">
+        <div class="content">
+          <img src="../static/asdasdasd.jpg" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mc">
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <div
+        class="alert alert-success alert-dismissable asdasdasdsad"
+        role="alert"
+      >
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="close"
+        >
+          <span aria-hidden="true" style="transform: translateY(-400px)"
+            ><p class="koko">&times;</p></span
+          >
+        </button>
+        {{message}}
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <form method="POST" action="{{ url_for('update_values') }}">
+        <div class="sd">
+          <div class="marnell">
+            <h2>NOTE</h2>
+            <p>You Can On Vote :</p>
+            {% for table, values in numbercheck_data.items() %} {% if table !=
+            'botomo' %}
+
+            <p style="color: black" class="check">
+              *<span class="values">{{ values }}</span> >
+              <span class="spanssssss">Candidate's From : </span>
+              <span class="tableee">{{table}}</span>
+            </p>
+
+            {% endif %} {% endfor %}
+            <div class="form__group">
+              <input
+                type="text"
+                class="form__input"
+                id="idid"
+                name="idnumber"
+                placeholder="Voter's ID"
+                required=""
+              />
+              <label for="name" class="form__label">Voter's ID</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="bot">
+          <button type="submit" class="custom-btn btn-7 qweewew">submit</button>
+        </div>
+
+        {% if tables_and_rows %} {% for position, data in
+        tables_and_rows.items() %} {% if position != "botomo" %}
+        <h2 class="se" id="scrooling">Position: {{ position }}</h2>
+        <!-- Table for Each Position -->
+        {% if data %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th class="namenamename">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in data %}
+            <tr class="rowroworwyoutboat">
+              <td>
+                <div class="checkbox-container">
+                  <input
+                    type="checkbox"
+                    id="{{ 'c_' + position + '_' + loop.index|string }}"
+                    name="{{ position }}"
+                    value="{{ row.1 }}"
+                    class="checkbox limit-checkbox"
+                    data-limit="{{ numbercheck_data.get(position, 0) }}"
+                    {%
+                    if
+                    row.checked
+                    %}
+                    checked
+                    {%
+                    endif
+                    %}
+                  />
+                  <label for="{{ 'c_' + position + '_' + loop.index|string }}">
+                    <span></span>
+                  </label>
+                </div>
+              </td>
+              <td class="namename">{{ row.1 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No Candidate. Please Add Candidate for Position: {{ position }}.</p>
+        {% endif %} {% endif %} {% endfor %} {% else %}
+        <p>No tables available.</p>
+        {% endif %}
+      </form>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get all checkboxes with the 'limit-checkbox' class
+        var checkboxes = document.querySelectorAll(".limit-checkbox");
+
+        checkboxes.forEach(function (checkbox) {
+          // Attach a change event listener to each checkbox
+          checkbox.addEventListener("change", function () {
+            // Get the maximum allowed check count from the data-limit attribute
+            var maxCheckCount = parseInt(this.dataset.limit);
+
+            // Count the number of checked checkboxes within the same group (name attribute)
+            var checkedCount = document.querySelectorAll(
+              'input[name="' + this.name + '"]:checked'
+            ).length;
+
+            // If the checked count exceeds the maximum, uncheck the current checkbox
+            if (checkedCount > maxCheckCount) {
+              this.checked = false;
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+      window.addEventListener("scroll", function () {
+        var contentHeight = document.querySelector(".mc").offsetHeight;
+        var fixedDiv = document.querySelector(".sd");
+
+        // Calculate the scroll position as a percentage of content height
+        var scrollPercentage = (window.scrollY / contentHeight) * 100;
+
+        // If scroll position is greater than or equal to 40%, apply sticky position
+        if (scrollPercentage >= 30) {
+          fixedDiv.style.position = "sticky";
+          fixedDiv.style.top = "-55%";
+        } else {
+          fixedDiv.style.position = "static";
+          fixedDiv.style.top = "auto";
+        }
+      });
+    </script>
+    <script>
+      window.addEventListener("scroll", function () {
+        var contentHeight = document.querySelector(".mc").offsetHeight;
+        var fixedDiv = document.querySelector(".bot");
+
+        // Calculate the scroll position as a percentage of content height
+        var scrollPercentage = (window.scrollY / contentHeight) * 100;
+
+        // If scroll position is greater than or equal to 40%, apply sticky position
+        if (scrollPercentage >= 30) {
+          fixedDiv.style.position = "sticky";
+          fixedDiv.style.top = "-10%";
+        } else {
+          fixedDiv.style.position = "static";
+          fixedDiv.style.top = "auto";
+        }
+      });
+    </script>
+
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </body>
+</html>
